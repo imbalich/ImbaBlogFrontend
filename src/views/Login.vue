@@ -1,72 +1,77 @@
 <template>
-  <div>
-    <div class="login-register-box">
-      <div class="flex justify-between items-center">
-        <h1>Login</h1>
+  <div class="min-h-screen flex items-center justify-center opacity-75 bg-gradient-to-r from-pink-300 to-rose-500">
+    <div class=" bg-white/20 backdrop-blur-2xl shadow-md rounded-md p-8 ">
+      <div class="flex justify-center mb-4">
+        <button
+          :class="{'bg-blue-500 text-white': isLogin, 'bg-gray-300 text-gray-700': !isLogin}"
+          class="px-4 py-2 rounded-md mr-2"
+          @click="isLogin = true"
+        >
+          Login
+        </button>
+        <button
+          :class="{'bg-blue-500 text-white': !isLogin, 'bg-gray-300 text-gray-700': isLogin}"
+          class="px-4 py-2 rounded-md"
+          @click="isLogin = false"
+        >
+          Register
+        </button>
       </div>
-      <el-form
-        label-width="100px"
-        class="login-form"
-        :model="loginForm"
-        :rules="loginRules"
-      >
-        <el-form-item label="用户名">
-          <el-input 
-            placeholder="Username"
-            v-model="loginForm.username"
-            clearable
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="密码">
-          <el-input placeholder="Password"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary">登录</el-button>
-        </el-form-item>
-      </el-form>
+      <form v-if="isLogin" class="space-y-4">
+        <!-- Login form fields -->
+        <div>
+          <label for="username" class="block text-gray-700">Username</label>
+          <input type="text" id="username" v-model="loginForm.username" class="w-full border-gray-300 rounded-md p-2">
+        </div>
+        <div>
+          <label for="password" class="block text-gray-700">Password</label>
+          <input type="password" id="password" v-model="loginForm.password" class="w-full border-gray-300 rounded-md p-2">
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Login</button>
+      </form>
+      <form v-else class="space-y-4">
+        <!-- Registration form fields -->
+        <div>
+          <label for="username" class="block text-gray-700">Username</label>
+          <input type="text" id="username" v-model="registerForm.username" class="w-full border-gray-300 rounded-md p-2">
+        </div>
+        <div>
+          <label for="password" class="block text-gray-700">Password</label>
+          <input type="password" id="password" v-model="registerForm.password" class="w-full border-gray-300 rounded-md p-2">
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Register</button>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 
 export default {
   name: 'Login',
-  
   setup() {
     const loginForm = reactive({
       username: '',
       password: '',
     })
-    const loginRules = reactive({
-      username: [
-        { required: true, message: 'Please input username', trigger: 'blur' },
-      ],
-      password: [
-        { required: true, message: 'Please input password', trigger: 'blur' },
-      ],
+    const registerForm = reactive({
+      username: '',
+      password: '',
     })
+    const isLogin = reactive(true)
+
     return {
       loginForm,
-      loginRules,
+      registerForm,
+      isLogin,
     }
   },
 }
 </script>
 
 <style scoped>
-.login-register-box {
-  width: 30vw;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .title {
-    font-size: 26px;
-    font-weight: 700;
-  }
+button:focus {
+  outline: none;
 }
 </style>

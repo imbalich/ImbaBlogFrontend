@@ -6,23 +6,23 @@
       <div class=" flex justify-between lg:justify-around">
         <div class=" flex justify-evenly items-center">
           <!-- 图和网站名 -->
-          <h1 class="font-bold text-4xl text-slate-900 dark:text-white">Imba Blog</h1>
+          <h1 class="font-bold text-4xl text-slate-900 dark:text-white select-none">Imba Blog</h1>
         </div>
         <!-- 导航，搜索，登录，切换明暗 -->
         <div class=" flex justify-between">
           <nav class="flex items-center mx-auto text-slate-900 dark:text-white">
-            <a href="#" class="mr-4 hover:text-pink-500">首页</a>
+            <a href="/" class="mr-4 hover:text-pink-500">首页</a>
             <a href="#" class="mr-4 hover:text-pink-500">专栏</a>
             <a href="#" class="mr-4 hover:text-pink-500">关于</a>
           </nav>
-          <div class="flex items-center">
-            <input type="text" placeholder="Search" class="mr-4 px-2 py-1 border border-gray-300 rounded">
+          <div class="flex items-center ">
+            <input type="text" placeholder="Search" class="mr-4 px-2 py-1 border border-gray-300 rounded dark:bg-slate-600">
           </div>
-          <div>
-            <button class=" text-slate-900 dark:text-white px-4 py-2 rounded mr-4 hover:text-pink-500">登录</button>
+          <div class="flex items-center text-slate-900 dark:text-white">
+            <a href="/login" class=" px-4 py-2 rounded mr-4 hover:text-pink-500">登录</a>
           </div>
-          <div class="flex items-center">
-            <button @click="toggleTheme" class="text-slate-900 dark:text-white hover:text-pink-500">切换主题</button>
+          <div class="flex items-center text-slate-900 dark:text-white">
+            <button @click="toggleTheme" class=" hover:text-pink-500">切换主题</button>
           </div>
         </div>
       </div>
