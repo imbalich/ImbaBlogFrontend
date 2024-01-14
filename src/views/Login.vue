@@ -1,73 +1,61 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center opacity-75 bg-gradient-to-r from-pink-300 to-rose-500">
-    <div class=" bg-white/20 backdrop-blur-2xl shadow-md rounded-md p-8 ">
-      <div class="flex justify-center mb-4">
-        <button
-          :class="{'bg-blue-500 text-white': isLogin, 'bg-gray-300 text-gray-700': !isLogin}"
-          class="px-4 py-2 rounded-md mr-2"
-          @click="isLogin = true"
-        >
-          Login
-        </button>
-        <button
-          :class="{'bg-blue-500 text-white': !isLogin, 'bg-gray-300 text-gray-700': isLogin}"
-          class="px-4 py-2 rounded-md"
-          @click="isLogin = false"
-        >
-          Register
-        </button>
+  <div class="dshero min-h-screen bg-base-200">
+    <div class="dshero-content flex-col lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <h1 class="text-5xl font-bold">Login now!</h1>
+        <p class="py-6">欢迎来到<span class="inline"> imba_lich </span>的主页，游客用户请使用 QQ 微信 github 第三方登录，该页面仅提供给管理员个人使用，谢谢！</p>
       </div>
-      <form v-if="isLogin" class="space-y-4">
-        <!-- Login form fields -->
-        <div>
-          <label for="username" class="block text-gray-700">Username</label>
-          <input type="text" id="username" v-model="loginForm.username" class="w-full border-gray-300 rounded-md p-2">
-        </div>
-        <div>
-          <label for="password" class="block text-gray-700">Password</label>
-          <input type="password" id="password" v-model="loginForm.password" class="w-full border-gray-300 rounded-md p-2">
-        </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Login</button>
-      </form>
-      <form v-else class="space-y-4">
-        <!-- Registration form fields -->
-        <div>
-          <label for="username" class="block text-gray-700">Username</label>
-          <input type="text" id="username" v-model="registerForm.username" class="w-full border-gray-300 rounded-md p-2">
-        </div>
-        <div>
-          <label for="password" class="block text-gray-700">Password</label>
-          <input type="password" id="password" v-model="registerForm.password" class="w-full border-gray-300 rounded-md p-2">
-        </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Register</button>
-      </form>
+      <div class="dscard shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <form class="dscard-body">
+          <div class="dsform-control">
+            <label class="dslabel">
+              <span class="dslabel-text">Username</span>
+            </label>
+            <input v-model="signInName" type="username" placeholder="username" class="dsinput dsinput-bordered" />
+          </div>
+          <div class="dsform-control">
+            <label class="dslabel">
+              <span class="dslabel-text">Password</span>
+            </label>
+            <input v-model="signInPassword" type="password" placeholder="password" class="dsinput dsinput-bordered" autocomplete="new-password" />
+            <label class="dslabel">
+              <a href="#" class="dslabel-text-alt dslink dslink-hover">Forgot password?</a>
+            </label>
+          </div>
+          <div class="dsform-control mt-6">
+            <button v-on:click.prevent="handleSignIn" class="dsbtn dsbtn-primary">登录</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { useLogin } from '@/api/login.js';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
 
 export default {
   name: 'Login',
   setup() {
-    const loginForm = reactive({
-      username: '',
-      password: '',
-    })
-    const registerForm = reactive({
-      username: '',
-      password: '',
-    })
-    const isLogin = reactive(true)
+    const signInName = ref('');
+    const signInPassword = ref('');
+    const router = useRouter();
+    const { signIn } = useLogin();
+
+    const handleSignIn = () => {
+      signIn(signInName.value, signInPassword.value, router);
+    };
 
     return {
-      loginForm,
-      registerForm,
-      isLogin,
-    }
+      signInName,
+      signInPassword,
+      handleSignIn,
+    };
   },
-}
+};
 </script>
 
 <style scoped>

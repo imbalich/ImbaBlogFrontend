@@ -19,6 +19,13 @@ export default defineConfig({
     // }),
     daisyui,
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "src/styles/index.scss";`
+      }
+    }
+  },
   
   resolve: {
     alias: {

@@ -1,6 +1,6 @@
 <template>
   <!-- Main -->
-  <div class=" w-full py-5 bg-gray-100 dark:bg-slate-800">
+  <main class=" w-full bg-base-200 py-5">
     <div class=" flex flex-row gap-4 justify-between mx-auto lg:justify-around xl:w-4/5">
       <!-- 博客列表 -->
       <div class=" basis-3/4 flex flex-col gap-4 ml-3">
@@ -12,7 +12,7 @@
       </div>
 
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
