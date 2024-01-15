@@ -1,15 +1,24 @@
 <template>
   <!-- 博客卡片 -->
-  <div class=" bg-white dark:bg-slate-700 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-md hover:shadow-lg">
+  <div
+  v-for = "article in info.results"  v-bind:key="article.url" id="articles"
+  class=" bg-white dark:bg-slate-700 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-md hover:shadow-lg">
     <!-- 专栏 -->
     <div class="flex flex-row mb-2 gap-2">
       <span
-        class=" px-2 py-1 text-base font-bold text-indigo-100 bg-indigo-600 rounded-md">xiaozzpp的个人专栏</span>
+        v-if="article.category !== null"
+        class=" px-2 py-1 text-base font-bold text-indigo-100 bg-indigo-600 rounded-md">{{article.category.title}}</span>
     </div>
     <!-- 标题 -->
     <div class="flex flex-row items-center gap-2">
       <span class=" px-2 py-1 text-base font-bold leading-none text-indigo-100 bg-indigo-600 rounded-md select-none" style="flex-shrink: 0;">置顶</span>
-      <a class="text-slate-900 hover:text-pink-500 dark:text-white dark:hover:text-pink-500 text-3xl font-medium tracking-wide leading-relaxed italic" href="#">DjangoRestfulFramework基础教学</a>
+      <!-- <a class="text-slate-900 hover:text-pink-500 dark:text-white dark:hover:text-pink-500 text-3xl font-medium tracking-wide leading-relaxed italic" href="#">DjangoRestfulFramework基础教学</a> -->
+      <router-link
+      :to="{ name: 'ArticleDetail', params: { id: article.id }}"
+      class=" text-slate-900 hover:text-pink-500 dark:text-white dark:hover:text-pink-500 text-3xl font-medium tracking-wide leading-relaxed italic"
+      >
+        {{ article.title }}
+      </router-link>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewbox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -84,8 +93,33 @@
 </template>
 
 <script>
+import {ref} from 'vue'
+import {useRoute} from 'vue-router'
+import getArticleData from '@/api/article.js'
+import pagination from '@/api/pagination.js'
+
 export default {
   name: 'ArticleCard',
+
+  setup() {
+    const info = ref('');
+    const route = useRoute();
+    const kwargs = ref({page: 0, searchText: ''});
+    getArticleData(info, route, kwargs);
+
+    const {
+      is_page_exists,
+      get_page_param,
+      get_path
+    } = pagination(info, route);
+
+    return {
+      info,
+      is_page_exists,
+      get_page_param,
+      get_path,
+    }
+  }
 }
 </script>
 

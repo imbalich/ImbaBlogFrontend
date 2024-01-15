@@ -5,6 +5,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersist from "pinia-plugin-persistedstate"
 // tailwind.css  https://www.tailwindcss.cn/docs
 import "./styles/tailwind.css";
+import '@/utils/extension.js'
 
 
 const app = createApp(App)

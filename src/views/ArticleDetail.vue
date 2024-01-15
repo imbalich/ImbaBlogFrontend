@@ -1,20 +1,20 @@
 <template>
   <div class="layout">
-    <BlogHeader></BlogHeader>
+    <ArticleHeader></ArticleHeader>
     <ArticleContent></ArticleContent>
     <BlogFooter></BlogFooter>
   </div>
 </template>
 
 <script>
-import BlogHeader from '@/components/Layout/BlogHeader.vue'
+import ArticleHeader from '@/components/Article/ArticleHeader.vue'
 import ArticleContent from '@/components/Article/ArticleContent.vue';
 import BlogFooter from '@/components/Layout/BlogFooter.vue'
 
 export default {
   name: 'ArticleDetail',
   components: {
-    BlogHeader,
+    ArticleHeader,
     ArticleContent,
     BlogFooter
 },

@@ -13,7 +13,12 @@ export const useAuthorization = () => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expired_time');
+    localStorage.removeItem('is_superuser');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('username');
     window.location.reload(false);
   };
 
