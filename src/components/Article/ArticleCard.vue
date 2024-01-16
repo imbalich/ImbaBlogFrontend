@@ -113,6 +113,8 @@ export default {
       get_path
     } = pagination(info, route);
 
+    console.log(info)
+
     return {
       info,
       is_page_exists,

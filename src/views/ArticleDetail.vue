@@ -10,6 +10,7 @@
 import ArticleHeader from '@/components/Article/ArticleHeader.vue'
 import ArticleContent from '@/components/Article/ArticleContent.vue';
 import BlogFooter from '@/components/Layout/BlogFooter.vue'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'ArticleDetail',
@@ -17,7 +18,8 @@ export default {
     ArticleHeader,
     ArticleContent,
     BlogFooter
-},
+  },
+
 }
 </script>
 

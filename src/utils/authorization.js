@@ -46,7 +46,7 @@ async function authorization() {
     }
 
     console.log('鉴权完毕');
-    console.log(localStorage);
+    // console.log(localStorage);
 
     return [hasLogin, username]
 }
