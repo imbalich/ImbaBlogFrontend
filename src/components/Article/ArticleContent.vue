@@ -1,12 +1,43 @@
 <template>
   <main class=" w-full justify-center bg-base-200 border-t-2">
     <div class=" flex flex-row justify-between ">
-      <div class=" flex basis-1/6 bg-base-100">
-        <MdCatalog :editorId="id" :scrollElement="scrollElement" class=" bg-base-100"/>
+      <!-- 栏目导航 -->
+      <div class=" hidden lg:flex lg:basis-1/6 bg-base-100">
+        <div class=" flex-1 justify-center">
+          <MdCatalog :editorId="id" :scrollElement="scrollElement" class=" sticky top-0 bg-base-100"/>
+        </div>
       </div>
-      <div class=" flex flex-col basis-4/6 bg-base-100 border-x-2">
+      <!-- 文章标题正文 -->
+      <div v-if="article" class=" flex flex-col lg:basis-4/6 w-full bg-base-100 border-x-2">
+        <!-- 标题部分 -->
         <div class=" border-b-2 px-5 py-5">
-          <h3 class=" text-3xl font-medium tracking-wide leading-relaxed">{{ article.title }}</h3>
+          <div class=" flex flex-row items-center relative">
+            <!-- 标题 -->
+            <h3 class=" text-3xl font-medium tracking-wide leading-relaxed">{{ article.title }}</h3>
+            <!-- 隐藏栏目目录 -->
+            <div class=" dsdropdown dsdropdown-end">
+              <div tabindex="0" role="button" class="dsbtn dsbtn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+              </div>
+              <ul tabindex="0" class="dsmenu dsmenu-sm dsdropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a>Item 1</a></li>
+                <li><a>Item 2</a></li>
+                <li><a>Item 3</a></li>
+              </ul>
+            </div>
+            <!-- 隐藏目录 -->
+            <div class=" dsdropdown dsdropdown-end absolute right-3">
+              <div tabindex="1" role="button" class="dsbtn dsbtn-ghost lg:hidden ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+              </div>
+              <ul tabindex="1" class="dsmenu dsmenu-sm dsdropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a>Item 1</a></li>
+                <li><a>Item 2</a></li>
+                <li><a>Item 3</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- 时间，浏览，点赞 -->
           <div class="flex flex-row gap-2 items-center">
             <span
               class=" text-sm text-slate-500 dark:text-slate-400 font-mono">2022/08/30
@@ -18,25 +49,18 @@
           </div>
         </div>
         <div v-if="article">
-          <MdPreview :editorId="id" :modelValue="article.body" />
+          <MdPreview :editorId="id" :modelValue="article.content" />
         </div>
       </div>
-      <div class=" flex flex-col basis-1/6 border-r-2 bg-base-100">
-        <MdCatalog :editorId="id" :scrollElement="scrollElement" class=" bg-base-100"/>
+      <!-- 文章导航 -->
+      <div class=" hidden lg:flex flex-col lg:basis-1/6 border-r-2 bg-base-100 justify-start">
+        <!-- 目录 -->
+        <div class=" flex-1 justify-center ">
+          <MdCatalog :editorId="id" :scrollElement="scrollElement" class=" sticky top-0 bg-base-100"/>
+        </div> 
       </div>
     </div>
-
-
   </main>
-  <div v-if="article" class=" border-2">
-    <article class="prose lg:prose-1">
-      <!-- {{ article.body }} -->
-
-    </article>
-    
-    
-
-  </div>
 </template>
 
 <script>
@@ -87,4 +111,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

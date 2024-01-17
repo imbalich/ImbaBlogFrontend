@@ -7,7 +7,7 @@
     <div class="flex flex-row mb-2 gap-2">
       <span
         v-if="article.category !== null"
-        class=" px-2 py-1 text-base font-bold text-indigo-100 bg-indigo-600 rounded-md">{{article.category.title}}</span>
+        class=" px-2 py-1 text-base font-bold text-indigo-100 bg-indigo-600 rounded-md">{{article.column.column_name}}</span>
     </div>
     <!-- 标题 -->
     <div class="flex flex-row items-center gap-2">
