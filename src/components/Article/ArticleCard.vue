@@ -25,7 +25,7 @@
       </svg>
     </div>
     <!-- 附属信息 -->
-    <div class="flex flex-row mb-2 gap-2 mt-2 items-center">
+    <div class="flex flex-row my-2 gap-2 items-center">
       <span
         class=" text-sm text-slate-500 dark:text-slate-400 font-mono">2022/08/30
         created</span>

@@ -10,7 +10,7 @@
               </svg>
             </div>
             <ul tabindex="0" class="dsmenu dsmenu-sm dsdropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              <li><a>首页</a></li>
+              <li><a href="/">首页</a></li>
               <li><a>栏目</a></li>
               <li><a>关于</a></li>
             </ul>
@@ -18,7 +18,7 @@
           <h3 class=" font-bold text-4xl select-none">Imba Blog</h3>
           <div class=" hidden lg:flex">
             <ul class="dsmenu dsmenu-horizontal px-1">
-                <li><a class="text-xl">首页</a></li>
+                <li><a class="text-xl" href="/">首页</a></li>
                 <li><a class="text-xl">栏目</a></li>
                 <li><a class="text-xl">关于</a></li>
             </ul>

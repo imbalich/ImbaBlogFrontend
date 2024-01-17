@@ -1,6 +1,6 @@
 <template>
   <header
-    class=" bg-base-100 text-base-content sticky top-0 flex w-full justify-center bg-opacity-80 backdrop-blur transition-shadow duration-100 shadow-sm">
+    class=" bg-base-100 text-base-content sticky top-0 flex w-full justify-center bg-opacity-80 backdrop-blur transition-shadow duration-100 shadow-md">
     <nav class=" dsnavbar w-full justify-between lg:justify-around">
       <div class=" flex-none items-center">
         <div class="dsdropdown">
