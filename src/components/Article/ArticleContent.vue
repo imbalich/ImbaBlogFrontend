@@ -48,9 +48,50 @@
               likes</span>
           </div>
         </div>
-        <div v-if="article">
+        <!-- 正文MarkDown -->
+        <div v-if="article" class=" ">
           <MdPreview :editorId="id" :modelValue="article.content" />
         </div>
+        <!-- 点赞，打赏 -->
+        <div class=" flex justify-center py-5">
+          <div class="dsjoin">
+            <button class="dsbtn dsjoin-item dsbtn-ghost md:dsbtn-wide">点赞</button>
+            <button onclick="tipModal.showModal()" class="dsbtn dsjoin-item dsbtn-ghost md:dsbtn-wide">打赏</button>
+            <dialog id="tipModal" class=" dsmodal">
+              <div class=" dsmodal-box text-center">
+                <img src="@/assets/头像.jpg" alt="" class=" w-2/3 mx-auto">
+                <p class="py-4">多谢您的支持,喜欢我的分享可以请我喝杯奶茶呦~</p>
+              </div>
+              <form method="dialog" class="dsmodal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
+        </div>
+        <!-- 链接 -->
+        <!-- 知识产权署名 -->
+        <div class=" flex flex-col mx-5 bg-base-300 gap-1 py-3 px-7 rounded-md">
+          <span class=" text-lg/5 font-mono ">
+            本文标题: {{ article.title }}
+          </span>
+          <span class=" text-lg/6 font-mono ">
+            本文作者: {{ article.created_by }}
+          </span>
+          <span class=" text-lg/6 font-mono ">
+            发布时间: {{ formattedTime(article.created) }}
+          </span>
+          <span class=" text-lg/6 font-mono ">
+            最后更新: {{ formattedTime(article.updated) }}
+          </span>
+          <span class=" text-lg/6 font-mono ">
+            原始链接: 域名{{route.fullPath}}
+          </span>
+          <span class=" text-lg/6 font-mono ">
+            许可协议: <a href="https://creativecommons.org/licenses/by-nc/4.0/" class=" hover:underline">署名-非商业性使用 4.0 国际许可协议</a>
+          </span>
+          <p class=" underline text-lg/6 font-mono">转载请保留原文链接及作者</p>
+        </div>
+
       </div>
       <!-- 文章导航 -->
       <div class=" hidden lg:flex flex-col lg:basis-1/6 border-r-2 bg-base-100 justify-start">
@@ -105,6 +146,7 @@ export default {
       formattedTime,
       isSuperuser,
       id,
+      route,
       scrollElement
     }
   }
